@@ -52,6 +52,16 @@ h1 {
   align-items: center;
 }
 
+button {
+  color: white;
+  background-color: grey;
+}
+
+button.active {
+  color: white;
+  background-color: black;
+}
+
 .slidecontainer {
   width: 100%;
 }

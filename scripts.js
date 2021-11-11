@@ -23,6 +23,12 @@ function getColorFromButton() {
 }
 
 const gridcontainer = document.getElementById("gridcontainer");
+const colorBtn = document.getElementById("colorbtn");
+const rainbowBtn = document.getElementById("rainbowbtn");
+const eraserBtn = document.getElementById("eraserbtn");
+const clearBtn = document.getElementById("clearbtn");
+const indivCells = document.querySelectorAll(".grid-item");
+
 
 function createGrid(rows, cols) {
   gridcontainer.style.setProperty('--grid-rows', rows);
@@ -34,36 +40,36 @@ function createGrid(rows, cols) {
 }
 
 function resetGrid() {
-  while (gridcontainer.firstChild) {
-    gridcontainer.removeChild(gridcontainer.firstChild);
+  const indivCells = document.querySelectorAll(".grid-item");
+  indivCells.forEach(indivCell => {
+    indivCell.style.backgroundColor = "white";
+    indivCell.style.opacity = "0";
+    })
   }
-}
 
-const colorPicker = document.getElementById("colorpicker");
-colorPicker.addEventListener("input", () => {
-  let color = document.getElementById("colorpicker").value;
-  console.log(color);
-})
-
-const colorBtn = document.getElementById("colorbtn");
 colorBtn.addEventListener("click", () => {
+  colorBtn.classList.add('active');
+  rainbowBtn.classList.remove('active');
+  eraserBtn.classList.remove('active');
   colorMouseOver();
 })
 
-const rainbowBtn = document.getElementById("rainbowbtn");
 rainbowBtn.addEventListener("click", () => {
+  colorBtn.classList.remove('active');
+  rainbowBtn.classList.add('active');
+  eraserBtn.classList.remove('active');
   rainbowMouseOver();
 })
 
-const eraserBtn = document.getElementById("eraserbtn");
 eraserBtn.addEventListener("click", () => {
+  colorBtn.classList.remove('active');
+  rainbowBtn.classList.remove('active');
+  eraserBtn.classList.add('active');
   eraserMouseOver();
 })
-const clearBtn = document.getElementById("clearbtn");
+
 clearBtn.addEventListener("click", () => {
     resetGrid();
-    createGrid(slider.value, slider.value);
-    defaultMouseOver();
   });
 
 function defaultMouseOver() {
@@ -116,6 +122,9 @@ function eraserMouseOver() {
     })
   })
 }
-createGrid(16, 16);
-defaultMouseOver();
+
+window.onload = function() {
+  createGrid(16, 16);
+  defaultMouseOver();
+}
 
