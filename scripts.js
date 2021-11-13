@@ -22,14 +22,6 @@ function getColorFromButton() {
   return colorPicker.value;
 }
 
-const gridcontainer = document.getElementById("gridcontainer");
-const colorBtn = document.getElementById("colorbtn");
-const rainbowBtn = document.getElementById("rainbowbtn");
-const eraserBtn = document.getElementById("eraserbtn");
-const clearBtn = document.getElementById("clearbtn");
-const indivCells = document.querySelectorAll(".grid-item");
-
-
 function createGrid(rows, cols) {
   gridcontainer.style.setProperty('--grid-rows', rows);
   gridcontainer.style.setProperty('--grid-cols', cols);
@@ -42,27 +34,35 @@ function createGrid(rows, cols) {
 function resetGrid() {
   const indivCells = document.querySelectorAll(".grid-item");
   indivCells.forEach(indivCell => {
-    indivCell.style.backgroundColor = "white";
     indivCell.style.opacity = "0";
-    })
-  }
+    indivCell.style.backgroundColor = "#ffffff";
+  })
+}
 
-colorBtn.addEventListener("click", () => {
-  colorBtn.classList.add('active');
+const gridcontainer = document.getElementById("gridcontainer");
+const penBtn = document.getElementById("penbtn");
+const rainbowBtn = document.getElementById("rainbowbtn");
+const eraserBtn = document.getElementById("eraserbtn");
+const clearBtn = document.getElementById("clearbtn");
+
+let currentMode = 'pen';
+
+penBtn.addEventListener("click", () => {
+  penBtn.classList.add('active');
   rainbowBtn.classList.remove('active');
   eraserBtn.classList.remove('active');
-  colorMouseOver();
+  penMouseOver();
 })
 
 rainbowBtn.addEventListener("click", () => {
-  colorBtn.classList.remove('active');
+  penBtn.classList.remove('active');
   rainbowBtn.classList.add('active');
   eraserBtn.classList.remove('active');
   rainbowMouseOver();
 })
 
 eraserBtn.addEventListener("click", () => {
-  colorBtn.classList.remove('active');
+  penBtn.classList.remove('active');
   rainbowBtn.classList.remove('active');
   eraserBtn.classList.add('active');
   eraserMouseOver();
@@ -71,21 +71,12 @@ eraserBtn.addEventListener("click", () => {
 clearBtn.addEventListener("click", () => {
     resetGrid();
   });
-
-function defaultMouseOver() {
+ 
+function penMouseOver() {
   const indivCells = document.querySelectorAll(".grid-item");
   indivCells.forEach(indivCell => {
     indivCell.addEventListener("mouseover", () => {
-      indivCell.style.backgroundColor = "black";
-    })
-  })
-}
-
-function colorMouseOver() {
-  const indivCells = document.querySelectorAll(".grid-item");
-  indivCells.forEach(indivCell => {
-
-    indivCell.addEventListener("mouseover", () => {
+      indivCell.style.opacity = "1";
       indivCell.style.backgroundColor = getColorFromButton();
     })
   })
@@ -95,8 +86,8 @@ function rainbowMouseOver() {
   const indivCells = document.querySelectorAll(".grid-item");
   indivCells.forEach(indivCell => {
     indivCell.addEventListener("mouseover", () => {
-      indivCell.style.backgroundColor = getRandomColor();
       indivCell.style.opacity = "1";
+      indivCell.style.backgroundColor = getRandomColor();
     })
   })
 }
@@ -105,13 +96,14 @@ function eraserMouseOver() {
   const indivCells = document.querySelectorAll(".grid-item");
   indivCells.forEach(indivCell => {
     indivCell.addEventListener("mouseover", () => {
-      indivCell.style.backgroundColor = "white";
+      indivCell.style.backgroundColor = "#ffffff";
     })
   })
 }
 
 window.onload = function() {
   createGrid(16, 16);
-  defaultMouseOver();
+  penMouseOver();
+  penBtn.classList.add('active');
 }
 

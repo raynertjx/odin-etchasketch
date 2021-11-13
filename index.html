@@ -5,25 +5,31 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
   <title>Etch-A-Sketch</title>
 </head>
 <body>
   <h1>Etch-A-Sketch</h1>
   <div id="maincontainer">
-    <div id="buttoncontainer">
-      <div id="colorbtncontainer">
-        <button id="colorbtn" autofocus>Color Mode</button>
+    <div id="secondcontainer">
+      <div id="buttoncontainer">
+        <div id="penbtncontainer">
+        <button id="penbtn" class="grow" autofocus>Pen Mode</button>
         <input type="color" id="colorpicker" value="#000000">
       </div>
-      <button id="rainbowbtn">Rainbow Mode</button>
-      <button id="eraserbtn">Eraser</button>
-      <button id="clearbtn">Clear</button>
-      <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="16" class="slider" id="myRange">
-        <p>Value: <span id="demo"></span></p> 
+      <button id="rainbowbtn" class="grow">Rainbow Mode</button>
+      <button id="eraserbtn" class="grow">Eraser</button>
+      <button id="clearbtn" class="grow">Clear</button>
+      <div class="slidercontainer">
+        <input type="range" min="1" max="64" value="16" class="slider" id="myRange">
+        <p>Grid Size: <span id="demo"></span></p> 
       </div>
     </div>
     <div id="gridcontainer"></div>
+  </div>
+    <p id="copyright">Built by <a href="https://github.com/raynertjx">raynertjx</a></p>
   </div>
   <script src="scripts.js"></script>
 </body>
