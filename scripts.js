@@ -75,15 +75,8 @@ clearBtn.addEventListener("click", () => {
 function defaultMouseOver() {
   const indivCells = document.querySelectorAll(".grid-item");
   indivCells.forEach(indivCell => {
-    let temp = indivCell.style.opacity;
-    let cellOpacity = Number(temp);
     indivCell.addEventListener("mouseover", () => {
       indivCell.style.backgroundColor = "black";
-      function add() {
-        cellOpacity += 0.1; 
-        return cellOpacity.toString();
-      }
-      indivCell.style.opacity = add();
     })
   })
 }
@@ -91,15 +84,9 @@ function defaultMouseOver() {
 function colorMouseOver() {
   const indivCells = document.querySelectorAll(".grid-item");
   indivCells.forEach(indivCell => {
-    let temp = indivCell.style.opacity;
-    let cellOpacity = Number(temp);
+
     indivCell.addEventListener("mouseover", () => {
       indivCell.style.backgroundColor = getColorFromButton();
-      function add() {
-        cellOpacity += 0.1; 
-        return cellOpacity.toString();
-      }
-      indivCell.style.opacity = add();
     })
   })
 }
